@@ -1,0 +1,7 @@
+pane	4	0	1	:*	0	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/workspace/sim/sim_control	1	zsh	:
+pane	7	1	1	:*	0	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/workspace/go/src/gitlab.inceptio.tech/luci/eval	1	Vim	:/Applications/MacVim.app/Contents/MacOS/Vim
+pane	8	0	1	:*	0	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/workspace/sim/task-engine	1	zsh	:
+window	4	0	:zsh	1	:*	6451,197x46,0,0,12	:
+window	7	1	:Vim	1	:*	6454,197x46,0,0,15	:
+window	8	0	:zsh	1	:*	6455,197x46,0,0,16	:
+state	4	7

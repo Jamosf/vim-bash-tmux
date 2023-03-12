@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/shangren.feng'
+let g:netrw_dirhist_0='/Users/shangren.feng/.aria2'
+let g:netrw_dirhist_9='/Users/shangren.feng'
+let g:netrw_dirhist_8='/Users/shangren.feng/workspace/shangren/dset'
+let g:netrw_dirhist_7='/Users/shangren.feng/workspace/shangren'
+let g:netrw_dirhist_6='/Users/shangren.feng/workspace/shangren/shangren'
+let g:netrw_dirhist_5='/Users/shangren.feng/workspace/shangren'
+let g:netrw_dirhist_4='/Users/shangren.feng/workspace/shangren/dset'
+let g:netrw_dirhist_3='/Users/shangren.feng/workspace/shangren'
+let g:netrw_dirhist_2='/Users/shangren.feng/workspace/shangren/shangren'
