@@ -84,7 +84,7 @@ set nocompatible              " be iMproved, required
  set showcmd
  set number
  set novisualbell
- set autoindent
+"" set autoindent
  set shiftwidth=4
  set tabstop=4 
  set softtabstop=4  
@@ -167,10 +167,10 @@ set nocompatible              " be iMproved, required
 "------------------------------------------------------------------------------------------
 "
 "-1-
- function! ClosePair(char)
-	if getline('.')[col('.')-1] == a:char
-		return "\<Right>"
-	else 
-		return a:char 
-	endif 
- endfunction 
+"" function! ClosePair(char)
+""	if getline('.')[col('.')-1] == a:char
+""		return "\<Right>"
+""	else 
+""		return a:char 
+""	endif 
+"" endfunction 

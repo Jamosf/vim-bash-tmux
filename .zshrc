@@ -145,7 +145,8 @@ alias unproxy='unset all_proxy'
 # git
 alias gits='git status'
 alias gitm='git commit --amend --no-edit'
-alias gita='git add .'
+alias gitaa='git add .'
+alias gita='git add -p'
 alias gitp='git push origin'
 
 # code
@@ -164,9 +165,6 @@ alias km='kubecm s'
 alias ks='k9s'
 
 alias argon='argo --instanceid=kraken -n'
-#export KUBECONFIG=~/.kube/aliyun_dev_config:~/.kube/aliyun_prod_config:~/.kube/jing_prod_config
-export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
-
 
 # argo 
 function ag(){
@@ -183,13 +181,20 @@ function age(){
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.bin
-alias p='poetry'
+alias p=poetry
+
 
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
-
 
 function db(){
 	zsh ~/workspace/demo-py/scripts/db/db-prod.sh $1
 }
 
+export PKG_CONFIG_PATH=/opt/homebrew/opt/mysql-client/lib/pkgconfig
+
+. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
+
+#export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
