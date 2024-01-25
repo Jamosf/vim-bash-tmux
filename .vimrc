@@ -1,4 +1,5 @@
-set nocompatible              " be iMproved, required
+ set nocompatible              " be iMproved, required
+ set backspace=indent,eol,start
  filetype off                  " required
 
  set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,6 +21,8 @@ set nocompatible              " be iMproved, required
  Plugin 'fatih/vim-go'
  Plugin 'bling/vim-airline'
  Plugin 'davidhalter/jedi-vim'
+ Plugin 'iamcco/mathjax-support-for-mkdp'
+ Plugin 'iamcco/markdown-preview.vim'
 "--------------------------------------------------------------------------------------------
  
  call vundle#end()            " required
@@ -89,7 +92,7 @@ set nocompatible              " be iMproved, required
  set tabstop=4 
  set softtabstop=4  
  set noexpandtab   
- set cindent
+"set cindent
  set autoread 
  set autowrite 
  set ignorecase 
@@ -103,12 +106,12 @@ set nocompatible              " be iMproved, required
  set completeopt=menu
  colorscheme monokai
  "inoremap { {<CR>}<ESC>O
- inoremap ' ''<ESC>i
- inoremap " ""<ESC>i
- inoremap ( ()<ESC>i
- inoremap } <C-r>=ClosePair('}')<CR>
- inoremap [ []<ESC>i
- inoremap ] <C-r>=ClosePair(']')<CR>
+ ""inoremap ' ''<ESC>i
+ ""inoremap " ""<ESC>i
+ ""inoremap ( ()<ESC>i
+ ""inoremap } <C-r>=ClosePair('}')<CR>
+ ""inoremap [ []<ESC>i
+ ""inoremap ] <C-r>=ClosePair(']')<CR>
  nnoremap <C-l> gt 
  nnoremap <C-h> gT 
  nnoremap <leader>w   :w<CR>i
@@ -161,7 +164,19 @@ set nocompatible              " be iMproved, required
  map <Leader>j <Plug>(easymotion-j)
  map <Leader>k <Plug>(easymotion-k)
  map <Leader>l <Plug>(easymotion-lineforward)
+
+ "
+"------------------------------------------------------------------------------------------
+" MarkdownPreview
+"------------------------------------------------------------------------------------------
+nmap <silent> <F8> <Plug>MarkdownPreview        
+imap <silent> <F8> <Plug>MarkdownPreview        
+nmap <silent> <F9> <Plug>StopMarkdownPreview    
+imap <silent> <F9> <Plug>StopMarkdownPreview   
+
 "
+"
+let g:pymode_python = 'python3'
 "------------------------------------------------------------------------------------------
 "Function
 "------------------------------------------------------------------------------------------

@@ -102,6 +102,14 @@ source $ZSH/oh-my-zsh.sh
 
 # kubectl opreator
 
+# PATH first
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.bin
+export PATH=$PATH:$HOME/workspace/go/bin
+export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:$HOME/.asdf/shims
+
+
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
 
@@ -111,27 +119,28 @@ alias k=kubectl
 
 # --------python env setting start-------
 # set pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/shims:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/shims:$PATH"
 
-if which pyenv > /dev/null;
-  then eval "$(pyenv init -)";
-fi
+# if which pyenv > /dev/null;
+#   then eval "$(pyenv init -)";
+# fi
 
 # 设置virtualenvwrapper
 export WORKON_HOME=~/.virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=/Users/shangren.feng/.pyenv/shims/python
+export VIRTUALENVWRAPPER_PYTHON=$HOME/.asdf/shims/python
 # 打开终端自动启用
-source $HOME/.pyenv/versions/$($VIRTUALENVWRAPPER_PYTHON -V 2>&1 | awk '{ print $2}')/bin/virtualenvwrapper.sh
+source $HOME/.asdf/installs/python/$($VIRTUALENVWRAPPER_PYTHON -V 2>&1 | awk '{ print $2}')/bin/virtualenvwrapper.sh
+source $HOME/.asdf/installs/python/3.8.12/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
 
+source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+source "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
 # --------python env setting end---------
 
-
 # mysql
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+# export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # golang
-export PATH="/Users/shangren.feng/workspace/go/bin:$PATH"
 export GOPATH="/Users/shangren.feng/workspace/go"
 
 # bash complete
@@ -148,19 +157,10 @@ alias gitm='git commit --amend --no-edit'
 alias gitaa='git add .'
 alias gita='git add -p'
 alias gitp='git push origin'
-
 # code
 alias code='code .'
 alias pip='python -m pip'
-
-# workspace
-alias cde='cd /Users/shangren.feng/workspace/go/src/gitlab.inceptio.tech/luci/eval'
-
 # k8s
-alias k8sd='cp ~/.kube/aliyun_dev_config ~/.kube/config'
-alias k8sp='cp ~/.kube/aliyun_prod_config ~/.kube/config'
-alias k8sl='cp ~/.kube/desktop_config ~/.kube/config'
-alias k8sj='cp ~/.kube/jing_prod_config ~/.kube/config'
 alias km='kubecm s'
 alias ks='k9s'
 
@@ -178,12 +178,6 @@ function agl(){
 function age(){
 	k exec -it $1 -n argo-luci -- /bin/bash
 }
-
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.bin
-alias p=poetry
-
-
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 
@@ -191,10 +185,3 @@ function db(){
 	zsh ~/workspace/demo-py/scripts/db/db-prod.sh $1
 }
 
-export PKG_CONFIG_PATH=/opt/homebrew/opt/mysql-client/lib/pkgconfig
-
-. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
-. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
-
-#export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
-export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
