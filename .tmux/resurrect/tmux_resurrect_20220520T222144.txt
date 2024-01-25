@@ -1,8 +1,0 @@
-pane	4	0	1	:*	0	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/workspace/sim/sim_control	1	zsh	:
-pane	4	0	1	:*	1	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng	0	zsh	:
-pane	test	0	1	:*	0	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/workspace/sim/task-engine	0	git	:/Library/Developer/CommandLineTools/usr/bin/git branch
-pane	test	0	1	:*	1	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/workspace/sim/task-engine	0	git	:/Library/Developer/CommandLineTools/usr/bin/git log
-pane	test	0	1	:*	2	fengshangrendeMacBook-Pro.local	:/Users/shangren.feng/.pyenv/versions/3.8.12/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages	1	zsh	:
-window	4	0	:zsh	1	:*	ec87,197x46,0,0{99x46,0,0,8,97x46,100,0,9}	:
-window	test	0	:zsh	1	:*	5060,197x46,0,0{99x46,0,0[99x22,0,0,0,99x23,0,23,4],97x46,100,0,3}	off
-state	test	4
