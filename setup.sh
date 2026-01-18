@@ -1,14 +1,21 @@
 #! /bin/bash
 
 # Clone necessary repositories
-if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  # Install Vim plugins
+  vim +PlugInstall +qall
 else
-  echo "Vundle.vim already exists, skipping clone."
+  echo "plug.vim already exists, skipping clone."
 fi
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+  # Install tmux plugins
+  ~/.tmux/plugins/tpm/bin/install_plugins
 else
   echo "tmux plugin manager already exists, skipping clone."
 fi
@@ -16,7 +23,7 @@ fi
 [[ ! -d ~/.vim/colors ]] && mkdir -p ~/.vim/colors
 
 # Create symbolic links
-for file in .vimrc .zshrc .tmux.conf .asdfrc .bashrc .vim/colors/monokai.vim; do
+for file in .vimrc .zshrc .tmux.conf .asdfrc .kubectl_aliases .vim/colors/monokai.vim; do
   if [ -f "$(pwd)/$file" ]; then
     ln -sf "$(pwd)/$file" "$HOME/$file"
     echo "Linked $file to $HOME/$file"
