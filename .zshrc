@@ -17,12 +17,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -69,9 +63,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -80,147 +71,68 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting autojump macos tmux)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.profile
+source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# kubectl opreator
-
-# PATH first
+# PATH configuration
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.bin
-export PATH=$PATH:$HOME/workspace/go/bin
 export PATH=$PATH:/opt/homebrew/bin
 export PATH=$PATH:$HOME/.asdf/shims
+export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
+export PATH=$PATH:$BUN_INSTALL/bin
+export PATH=$PATH:/opt/homebrew/opt/mysql-client@8.4/bin
+export PATH=$PATH:${KREW_ROOT:-$HOME/.krew}/bin
+export PATH=$PATH:~/.opencode/bin
 
-
-[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
-function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
-
-[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
+# Aliases
 alias k=kubectl
-
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-
-# --------python env setting start-------
-# set pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/shims:$PATH"
-
-# if which pyenv > /dev/null;
-#   then eval "$(pyenv init -)";
-# fi
-
-# 设置virtualenvwrapper
-export WORKON_HOME=~/.virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=$HOME/.asdf/shims/python
-# 打开终端自动启用
-source $HOME/.asdf/installs/python/$($VIRTUALENVWRAPPER_PYTHON -V 2>&1 | awk '{ print $2}')/bin/virtualenvwrapper.sh
-source $HOME/.asdf/installs/python/3.8.12/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
-
-source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
-source "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
-# --------python env setting end---------
-
-# mysql
-# export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-
-# golang
-# export GOPATH="/Users/shangren.feng/workspace/go"
-
-# bash complete
-test -e "${HOME}/.jfrog/jfrog_bash_completion" && source "${HOME}/.jfrog/jfrog_bash_completion"
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-# 代理
-alias proxy='export all_proxy=socks5://127.0.0.1:7890'
+alias proxy='export all_proxy=http://127.0.0.1:7890'
 alias unproxy='unset all_proxy'
-
-# git
 alias gits='git status'
 alias gitm='git commit --amend --no-edit'
 alias gitaa='git add .'
 alias gita='git add -p'
 alias gitp='git push origin'
-# code
 alias code='code .'
 alias pip='python -m pip'
-# k8s
 alias km='kubecm s'
 alias ks='k9s'
-
 alias argon='argo --instanceid=kraken -n'
 
-#proxy
-# argo 
+# Functions
 function ag(){
-	argo get $1 -n argo-luci --instanceid=kraken
+    argo get $1 -n argo-luci --instanceid=kraken
 }
 
 function agl(){
-	argo list -n argo-luci --instanceid=kraken
+    argo list -n argo-luci --instanceid=kraken
 }
 
 function age(){
-	k exec -it $1 -n argo-luci -- /bin/bash
+    k exec -it $1 -n argo-luci -- /bin/bash
 }
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
 
 function db(){
-	zsh ~/workspace/demo-py/scripts/db/db-prod.sh $1
+    zsh ~/workspace/demo-py/scripts/db/db-prod.sh $1
 }
 
+function klonw(){
+    kubectl wait --for=condition=ready pod/$2 --timeout=300s -n $1
+    klon $1 $2
+}
+
+function sqlc(){
+    cat $1| tr '\n' ' ' | tr -s ' '
+}
+
+# Environment variables
 export GOOGLE_CLOUD_PROJECT="hallowed-moment-464105-f5"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
-export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
+export JAVA_HOME="~/Library/Java/JavaVirtualMachines/jdk1.8.0_401.jdk/Contents/Home"
+export HF_ENDPOINT=https://hf-mirror.com
+export API_TIMEOUT_MS=600000
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-# bun completions
-[ -s "/Users/sr.feng/.bun/_bun" ] && source "/Users/sr.feng/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

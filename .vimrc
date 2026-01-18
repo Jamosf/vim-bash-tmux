@@ -5,10 +5,9 @@
  set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#begin()
 "------------------------------------------------------------------------------------------
-"all plugins insatlled
+"all plugins installed
 "------------------------------------------------------------------------------------------
  Plugin 'VundleVim/Vundle.vim'
- "Plugin 'Valloric/YouCompleteMe'
  Plugin 'majutsushi/tagbar'
  Plugin 'tpope/vim-fugitive'
  Plugin 'scrooloose/nerdtree'
@@ -24,7 +23,7 @@
  Plugin 'iamcco/mathjax-support-for-mkdp'
  Plugin 'iamcco/markdown-preview.vim'
 "--------------------------------------------------------------------------------------------
- 
+
  call vundle#end()            " required
  filetype plugin indent on    " required
 
@@ -39,34 +38,6 @@
  let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules'] "ignore files in NERDTree
  let NERDTreeMinimalUI=1
 "
-"--------------------------------------------------------------------------------------------
-"youcompleteme config
-"--------------------------------------------------------------------------------------------
- let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
- autocmd InsertLeave * if pumvisible() == 0|pclose|endif 
- let g:ycm_key_invoke_completion = '<C-Tab>'
- let g:ycm_key_list_select_completion = ['<Down>']
- let g:ycm_key_list_previous_completion = ['<Up>']
- let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
- let g:ycm_confirm_extra_conf=0
- let g:ycm_collect_identifiers_from_tags_files=1
- let g:ycm_min_num_of_chars_for_completion=2
- let g:ycm_cache_omnifunc=0	
- let g:ycm_seed_identifiers_with_syntax=1
- let g:ycm_complete_in_comments = 1
- let g:ycm_complete_in_strings = 1
- let g:ycm_collect_identifiers_from_comments_and_strings = 0
-
- nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
- nnoremap <leader>lo :lopen<CR>	
- nnoremap <leader>lc :lclose<CR>
- inoremap <leader><leader> <C-x><C-o>
- inoremap <expr> <CR>         pumvisible()? "\<C-y>" : "\<CR>"
- inoremap <expr> <Down>     pumvisible()? "\<C-n>":"\<Down>"
- inoremap <expr> <Up>       pumvisible()? "\<C-p>":"\<Up>"
- inoremap <expr> <PageDown>   pumvisible() ? '<PageDown><C-p><C-n>' : '<PageDown>'
- inoremap <expr> <PageUp>     pumvisible() ? '<PageUp><C-p><C-n>' : '<PageUp>'
- nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "-------------------------------------------------------------------------------------------
 "vim-go key map
@@ -81,7 +52,7 @@
 "--------------------------------------------------------------------------------------------
  syntax enable
  syntax on
- set completeopt=longest,menu 
+ set completeopt=longest,menu
  set completeopt-=preview
  set ruler
  set showcmd
@@ -89,19 +60,19 @@
  set novisualbell
 "" set autoindent
  set shiftwidth=4
- set tabstop=4 
- set softtabstop=4  
- set noexpandtab   
+ set tabstop=4
+ set softtabstop=4
+ set noexpandtab
 "set cindent
- set autoread 
- set autowrite 
- set ignorecase 
- set showmatch 
+ set autoread
+ set autowrite
+ set ignorecase
+ set showmatch
  set guioptions-=T
  set guioptions-=m
- ""set mouse=
- set hlsearch 
- set incsearch 
+ set mouse=a
+ set hlsearch
+ set incsearch
  set go-=T
  set completeopt=menu
  colorscheme monokai
@@ -112,11 +83,11 @@
  ""inoremap } <C-r>=ClosePair('}')<CR>
  ""inoremap [ []<ESC>i
  ""inoremap ] <C-r>=ClosePair(']')<CR>
- nnoremap <C-l> gt 
- nnoremap <C-h> gT 
+ nnoremap <C-l> gt
+ nnoremap <C-h> gT
  nnoremap <leader>w   :w<CR>i
  nnoremap <leader>wq  <ESC>:wq<CR>
- nnoremap <leader>q   :q!<CR> 
+ nnoremap <leader>q   :q!<CR>
  nnoremap <Space>j <C-W><C-J>
  nnoremap <Space>k <C-W><C-K>
  nnoremap <Space>l <C-W><C-L>
@@ -152,8 +123,8 @@
 "
 "------------------------------------------------------------------------------------------
 "ack config
-"need install: 
-"apt-get install ack-grep 
+"need install:
+"apt-get install ack-grep
 "------------------------------------------------------------------------------------------
  nnoremap <F3> :Ack<Space>
 "
@@ -169,10 +140,10 @@
 "------------------------------------------------------------------------------------------
 " MarkdownPreview
 "------------------------------------------------------------------------------------------
-nmap <silent> <F8> <Plug>MarkdownPreview        
-imap <silent> <F8> <Plug>MarkdownPreview        
-nmap <silent> <F9> <Plug>StopMarkdownPreview    
-imap <silent> <F9> <Plug>StopMarkdownPreview   
+nmap <silent> <F8> <Plug>MarkdownPreview
+imap <silent> <F8> <Plug>MarkdownPreview
+nmap <silent> <F9> <Plug>StopMarkdownPreview
+imap <silent> <F9> <Plug>StopMarkdownPreview
 
 "
 "
@@ -185,7 +156,7 @@ let g:pymode_python = 'python3'
 "" function! ClosePair(char)
 ""	if getline('.')[col('.')-1] == a:char
 ""		return "\<Right>"
-""	else 
-""		return a:char 
-""	endif 
-"" endfunction 
+""	else
+""		return a:char
+""	endif
+"" endfunction
