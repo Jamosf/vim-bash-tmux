@@ -9,7 +9,5 @@ ln -sf `pwd`/.vimrc $HOME/.vimrc
 ln -sf `pwd`/.zshrc $HOME/.zshrc
 ln -sf `pwd`/.tmux.conf $HOME/.tmux.conf
 ln -sf `pwd`/.asdfrc $HOME/.asdfrc
-ln -sf `pwd`/.vim $HOME/
-ln -sf `pwd`/.tmux $HOME/
 ln -sf `pwd`/.bashrc $HOME/.bashrc
 ln -sf `pwd`/.config/opencode/skill $HOME/.config/opencode/skill

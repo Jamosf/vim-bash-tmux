@@ -1,3 +1,5 @@
 .vim/bundle/
 .tmux/
 .DS_Store
+.node_modules/
+dist/

@@ -1,0 +1,7 @@
+digraph ModuleGraph {
+    // Template for generating module dependency graphs
+    // Replace with actual modules and dependencies
+    // Example:
+    // main -> utils;
+    // models -> database;
+}
