@@ -1,0 +1,46 @@
+# package
+snippet pa
+	package ${1}
+# import
+snippet im
+	import(
+		"${1}"
+	)
+# struct
+snippet ty
+	type ${1} struct{
+		${2}
+	}
+# if err != nil
+snippet ife
+	if err != nil{
+		${1}
+		return err
+	}
+# if len == 0
+snippet ifl
+	if len(${1}) == 0{
+		return errors.New("${2}")
+	}
+# for i:=0
+snippet fori
+	for ${1:i} := 0;$1 < n;$1++{
+		${2}
+	}
+# for range
+snippet forr
+	for ${1},${2} := range ${3}{
+
+	}
+# {}
+snippet {
+	{
+		${1}
+	}
+# monkey 
+snippet monkeyp
+	guard := monkey.patch(${1:dbutil.DoQueryOne},func(${2:} ${3:string})(error))){
+		return 
+	}
+	guard.Unpatch()
+# convey

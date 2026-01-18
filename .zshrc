@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting autojump macos)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting autojump macos tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,6 +123,7 @@ function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 alias k=kubectl
 
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 # --------python env setting start-------
 # set pyenv
@@ -141,7 +149,7 @@ source "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # golang
-export GOPATH="/Users/shangren.feng/workspace/go"
+# export GOPATH="/Users/shangren.feng/workspace/go"
 
 # bash complete
 test -e "${HOME}/.jfrog/jfrog_bash_completion" && source "${HOME}/.jfrog/jfrog_bash_completion"
@@ -166,6 +174,7 @@ alias ks='k9s'
 
 alias argon='argo --instanceid=kraken -n'
 
+#proxy
 # argo 
 function ag(){
 	argo get $1 -n argo-luci --instanceid=kraken
@@ -185,3 +194,33 @@ function db(){
 	zsh ~/workspace/demo-py/scripts/db/db-prod.sh $1
 }
 
+export GOOGLE_CLOUD_PROJECT="hallowed-moment-464105-f5"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
+export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+# bun completions
+[ -s "/Users/sr.feng/.bun/_bun" ] && source "/Users/sr.feng/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
